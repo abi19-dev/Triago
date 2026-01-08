@@ -1,0 +1,36 @@
+# Build outputs
+**/bin/
+**/obj/
+**/out/
+
+# Visual Studio
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Rider
+.idea/
+*.sln.iml
+
+# Node
+**/node_modules/
+**/dist/
+**/build/
+**/.vite/
+
+# Logs
+**/logs/
+*.log
+
+# Environment files
+.env
+.env.*
+
+# OS files
+Thumbs.db
+Desktop.ini
+
+# Coverage
+**/coverage/

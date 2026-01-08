@@ -1,0 +1,348 @@
+Upute za korištenje LLM-a za izradu agenta
+Upute studentima: diskusija ideje i dizajn AI agenta
+ 
+Na ovom predmetu nije cilj samo implementirati ML model ili web aplikaciju, već razviti inteligentnog softverskog agenta.
+
+Zato se značajan dio bodova odnosi na razmišljanje, diskusiju i dizajn agenta, a ne samo na kod.
+ 
+1) Diskusija ideje
+Prije pisanja koda, student treba provesti ozbiljnu diskusiju oko same ideje.
+U ovoj fazi preporučeno je koristiti LLM (GPT, Copilot Chat) kao partner za razmišljanje.
+Student treba kroz diskusiju razjasniti:
+Šta je problem koji agent rješava?
+Da li je sistem agent, ili samo analitička aplikacija?
+Šta se dešava kroz vrijeme (iterativno), a ne samo jednom?
+ Ako se ideja može svesti na:
+“Korisnik unese podatke → dobije rezultat”
+
+onda nije postignut cilj.
+2) Vrste agenata (student mora izabrati šta gradi)
+Tokom diskusije, student treba navesti koju vrstu agenta implementira (jednu ili više):
+Primjeri (nije ograničeno):
+Ciljno-orijentisani agent
+→ ima jasan cilj koji optimizira (min/max)
+Klasifikacioni agent
+→ donosi odluke u zonama / pragovima (npr. Allow / Review / Block)
+Savjetodavni agent
+→ predlaže, ali ne odlučuje
+Context-aware agent
+→ ista situacija → različita akcija u zavisnosti od konteksta
+Learning agent
+→ mijenja ponašanje nakon novih iskustava
+Multi-agent sistem
+→ više agenata sa različitim ulogama (npr. DecisionAgent + LearningAgent)
+Student treba objasniti zašto je zašto je izabrao baš tu vrstu agenta.
+3) Sense → Think → Act → Learn (bez ovoga nema punih bodova)
+Svaka ideja mora biti razložena na agent ciklus.
+Primjer pitanja koja student mora znati odgovoriti:
+Sense:
+Šta agent opaža iz okoline? (podaci, stanje sistema, kontekst)
+Think:
+Kako agent zaključuje? (pravila, ML model, pragovi, heuristike)
+Act:
+Šta agent konkretno radi u sistemu? (status, preporuka, akcija)
+Learn :
+Šta agent pamti i kako se mijenja kroz vrijeme?
+4) Ideje za proširenje
+Nakon osnovne ideje, student treba razmotriti barem jedno proširenje.
+Primjeri proširenja:
+nesigurni slučajevi (agent prepoznaje kada “nije siguran”)
+adaptivni pragovi (mijenjaju se kroz vrijeme)
+aktivno učenje (agent traži dodatne informacije)
+objašnjenje odluka (zašto je agent nešto preporučio)
+više agenata sa podjelom odgovornosti
+simulacija okoline (agent testira ponašanje)
+Nije obavezno sve implementirati, ali diskusija mora postojati.
+5) Uloga LLM-a u ovoj fazi 
+Korištenje LLM-a je dozvoljeno i poželjno, ali se boduje kako se koristi.
+Preporučeni način:
+koristiti LLM-a za:
+generisanje više varijanti ideje
+poređenje različitih tipova agenata
+kritiku vlastite ideje (“zašto ovo nije agent?”)
+tražiti od LLM-a:
+da predloži 3 alternative
+da navede slabosti ideje
+da predloži proširenja
+Student treba pokazati da nije prihvatio prvi odgovor, nego da je razmišljao i birao.
+6) Tek nakon ovoga dolazi kod
+Tek kada su:
+ideja jasna,
+agent ciklus definisan,
+vrsta agenta izabrana,
+proširenja razmotrena,
+onda se prelazi na specifikaciju agenta koja definiše:
+implementaciju
+web / UI
+ML biblioteke
+Dio specifikacije može biti izvučen iz obavijesti "Upute za softversku arhitekturu agenta"
+Kad je specifikacija gotova, tada je smisleno koristiti LLM koji je jači u pisanju koda (npr. Claude AI, Cursor ili Copilot u IDE-u):
+pošaljete mu specifikaciju + strukturu projekta
+tražite da generiše kod po modulima (Domain/Application/Infrastructure/Web)
+tražite “copy-paste spremne fajlove”, ali po koracima (ne sve odjednom)
+Šta se boduje:
+da kod prati specifikaciju
+da su slojevi čisti (Web sloj tanak, logika u shared)
+da agent ima Tick/Step logiku, a host samo loop/scope/delay
+3) Faza code review (LLM kao “recenzent”)
+Nakon što drugi LLM napiše kod, šaljete ga nazad u prvi LLM (GPT ili drugi model) koji ima širu sliku i da radi review:
+“Da li Web sloj sadrži biznis logiku?”
+“Da li je Sense/Think/Act/Learn jasno razdvojeno?”
+“Koje su 3 najveće greške i kako ih popraviti?”
+“Gdje je coupling prejak, gdje treba refaktor?”
+Šta se boduje:
+da imate iteracije i popravke, ne samo prvi output
+da umijete objasniti zašto ste promijenili arhitekturu
+Optimalni scenario (najviše bodova)
+Ako hoćete maksimum bodova, idealan tok je:
+Diskusija sa GPT ili Copilot chat (šira slika):
+generišite više ideja, izaberite jednu, napravite agent specifikaciju i acceptance kriterije.
+Spec u “koder” LLM (Claude AI, Cursor, Copilot u IDE):
+implementacija po slojevima i modulima.
+Review u GPT ili Copilot chat (šira slika):
+refaktor, čišćenje Web sloja, provjera agent ciklusa, testovi.
+2–3 iteracije između modela:
+jedna iteracija skoro uvijek nije dovoljno dobra.
+To izgleda kao rad sa ekspertima u stvarnom životu:
+jedan ekspert pomaže oko koncepta (arhitektura/spec),
+drugi oko implementacije (kod),
+treći radi review (kritički pogled).
+Različiti LLM-ovi i “nivo diskusije”
+GPT / Copilot Chat: bolji za širi pogled, arhitekturu, plan, rizike, edge-caseove, “šta fali agentu”.
+Claude AI / Cursor: često odlični u generisanju većih dijelova koda sa vrlo malo grešaka i refaktoru, posebno jaki kad imaju cijeli kontekst projekta.
+Copilot u IDE-u: super za sitne stvari (metode, DTO, mapping), ali zna izgubiti “veliku sliku”.
+Kombinacija različitih LLM-ova je poželjna na predmetu.
+ 
+Godina 4 - Umjetna inteligencija 2025/2026
+---
+
+ Način formiranja konačne ocjene iz predmeta "Umjetna inteligencija"
+
+
+C. Agent - max 70b
+Unikatnost ideje - 15b
+Primjenjivost - 5b
+Tehnička implementacija - 30b
+
+Obavezno razdvajanje na logičke cjeline Sense→Think→Act→Learn + korištenje "Clean architecture", pogledati obavijest na Teams: "Upute za softversku arhitekturu agenta - v2"
+Način primjene LLM-a - 20b
+
+Obavezno: diskusija ideje, specifikacija agenta, ideje za proširenje, review implementacije. Pogledajte obavijest na Teams: "Upute za korištenje LLM-a"
+ 
+Primjenjivost rješenja, tehnička implementacija agenta i način korištenja LLM-a  boduju se na osnovu dokumentacije koja treba biti uploadovana sa source kodom.
+
+Godina 4 - Umjetna inteligencija 2025/2026
+ 
+----
+ 
+Upute za softversku arhitekturu agenta - v2
+Godina 4 - Umjetna inteligencija 2025/2026
+ 
+Slojevi i odgovornosti
+Obavezna podjela odgovornosti, prema logičkim komponentama agenta (Sense→Think→Act→Learn) te programerski cijelinama "Clean architecture". Sva logika agenta koja odlučuje šta se dešava sa porukom / modelom mora biti ushared modulu a ne u Webmodulu. Web je samo “transport + host”:
+više projekata unutar jednog Visual studio solutiona (ako je dotnet projekat) ili 
+posebni folderi (za druge frameworkove / programske jezike).
+ 
+Slijedi primjer Spam agent - detaljnije upute će biti date u sklopu nastave - vježbe 5, naredni petak.
+https://github.com/adil-fit-ba/AI-2025-26/tree/main/Vjezbe05
+ 
+ 
+Za pune bodove iz tehničke implementacije agenta potrebo je primijeniti sljedeće:
+1- AiAgents.Core (framework sloj)
+Samo generičke abstrakcije:
+SoftwareAgent<TPercept, TAction, TResult, TExperience>
+IPerceptionSource<T>
+IPolicy<TPercept, TAction>
+IActuator<TAction, TResult>
+ILearningComponent<TExperience>
+Nema EF, nema ML.NET, nema “Spam” znanja.
+
+2- AiAgents.SpamAgent (shared logika = “mozak” agenta)
+
+a. Domain
+Entiteti + enum-i: Message, Prediction, Review, ModelVersion, SystemSettings
+Pravila i invarijante koje su domenske (npr. legalni statusi, labeli, odluke)
+Domain ne zna za Web/SignalR.
+b. Application
+Ovdje živi agent logika kroz use-case servise + runnere.
+c. Use-case servisi (commands/use-cases):
+QueueService (enqueue/dequeue, update status)
+ScoringService (score + apply thresholds + persist prediction + update status)
+ReviewService (gold label + counter update)
+TrainingService (train/retrain + model versioning + activate)
+d. Runneri (agent ciklus):
+ScoringAgentRunner → Sense → Think → Act
+RetrainAgentRunner → Sense → Think → Act → Learn
+Runneri su mjesto gdje se vidi “agent arhitektura” i gdje se spaja više servisa u jedan tick.
+Runner ne smije biti “tanki wrapper”. Runner mora sadržati logiku “šta je percept”, “šta znači hasNext”, “kada se radi tick/step”, “kada se prekače”.
+e- Infrastructure
+SpamAgentDbContext
+DatabaseSeeder (import + deterministični split)
+File storage helper (model path, direktoriji)
+(Repo helper samo ako stvarno treba, ali bolje ne)
+f- ML
+ISpamClassifier
+MlNetSpamClassifier (load/predict/train)
+ML je crna kutija za predmet "Umjetna inteligencija". Detalji će biti obrađivani na predmetu "Mašinsko učenje".
+3- AiAgents.SpamAgent.Web (host/transport = “tanki sloj”)
+Web smije imati samo:
+Controllers (pozovu Application servise / query servise)
+DTO mapping
+SignalR emit
+Background scheduling (delay, scope-per-iteration, cancellation)
+DI wiring
+Web sloj ne smije sadržavati domenske odluke:
+thresholds pravila (Allow/Pending/Block)
+status rules (kada ide u PendingReview)
+retrain uslov (gold threshold)
+dataset split pravila
+Ako se to pojavi u Webu → smatra se lošom arhitekturom.
+
+
+
+“Agent logika”
+“jedan korak” sistema
+šta agent opaža (percept)
+uslov kada radi / kada preskače
+šta odluči i šta uradi u tom koraku
+koje promjene stanja nastaju u DB
+I to mora biti u Runneru.
+
+
+Minimalni standard za Runner (primjer na SPAM agentu)
+
+a- ScoringAgentRunner (shared)
+Sense: uzmi sljedeću poruku iz queue-a (Status=Queued)
+Think: izračunaj pSpam
+Act: apply thresholds + set status + upiši prediction
+Output: ScoringTickResult (ovakav dto rezultat se šalje u Web evente)
+Web ne smije ponovo računati poslovna pravila (decision niti status).
+Web samo emituje rezultat iz Runnera.
+b- RetrainAgentRunner (shared)
+Sense: očitaj SystemSettings (NewGoldSinceLastTrain, Threshold, Enabled)
+Think: da li treba retrain
+Act: pozovi TrainingService.TrainModelAsync(template, activate:true)
+Learn: reset counter / update settings (ili kroz TrainingService)
+
+
+
+Šta Web worker smije raditi 
+while (!token.IsCancellationRequested)
+CreateScope()
+runner.TickAsync(token)
+Delay(...)
+Emit SignalR
+Worker ne smije:
+“ako pSpam > … onda…”
+“ako gold >= … onda train…”
+“ako nema modela onda… učitaj model file…”
+To ide u shared (servis/runner).
+
+
+“Ovo je Clean Architecture u praksi: Domain + Application + Infrastructure + Host.
+Ne radimo puni CQRS (Commands/Handlers/MediatR) jer predmet nije enterprise backend,
+nego agentički tok Sense→Think→Act→Learn.”
+---
+
+ 
+ 
+Pravilo #1: Step/Tick = jedna iteracija agentičkog ciklusa
+Svaki Step() mora biti prepoznatljiv kao:
+Sense: pročitaj jedno “stanje svijeta” (DB/queue/model state)
+Think: donesi odluku (policy/pravila)
+Act: izvrši akciju (promijeni svijet)
+Learn (ako postoji): ažuriraj znanje / brojač / Q tabelu / metrikе
+Ako funkcionalnosti nisu jasno razdvojeni na Sense/Think/Act/Learn u tick-u → nije agent, nego helper metoda.
+Pravilo #2: Tick/step radi “malo”, ne “sve”
+Tick/step mora biti kratak i atomaran.
+Dobar primjer:
+scoring agent: obradi jednu poruku
+retrain agent: uradi jednu provjeru i eventualno pokrene retrain
+Loš primjer:
+u tick-u obradi 200 poruka + retrain + emit sve + cleanup
+To je monolit, teško testirati i lako se zaglavi.
+Pravilo #3: Tick/step mora imati “no-work” izlaz bez štete
+Kad nema posla, tick/step ne smije praviti štetu, ni trošiti resurse.
+Dobar primjer:
+ako nema queued poruke → vrati null / false / NoWork
+host onda radi delay/backoff
+Loš primjer:
+tick/step baca exception kad nema poruka
+tick/step radi “busy loop” bez pauze
+Pravilo #4: Tick/step ne smije sadržavati “host” stvari
+Tick/step je logika agenta (shared). Host (Web/Console) je samo orkestracija.
+Tick/step ne smije da implementira:
+Task.Delay(...)
+SignalR emit
+HTTP logiku
+CORS, routing, DTO mapping
+Tick može da implementira:
+DB upis/čitanje preko servisa
+odluku: status, thresholds, retrain rule
+kreiranje domain objekata (Prediction, Review…)
+Pravilo #5: Tick mora biti idempotentan koliko god može
+Ako se tick/step ponovi (zbog restarta, exception-a), ne smije urušiti sistem.
+Dovoljno je implementirati sljedeće dvije stavke:
+poruka se “dequeue-a” na siguran način (ne procesira se duplo)
+upis prediction-a/statusa je konzistentan
+Tipično rješenje: status Queued → Processing → Done ili transakcija + update status.
+Pravilo #6: Tick/step može imati jasno definisan “rezultat”
+Tick/step može vraćati DTO rezultat koji host može koristiti za UI/log/realtime. Ovo zahtjeva modifikaciju bazne klase SoftwareAgent!
+Preporuka:
+TickResult Step();
+null = nema posla
+TickResult = šta se desilo (MessageId, Decision, NewStatus, ModelVersion…)
+Host onda:
+logira
+emituje SignalR event
+odluči koliko da čeka
+Pravilo #7: Ako akcija traje dugo, tick mora biti state-machine
+Ako tick/step može trajati “dugo” (npr. trening modela), onda:
+tick/step radi kao mašina stanja:
+CheckThreshold
+StartTraining
+ActivateModel
+ResetCounter
+Ili: trening je servis koji vodi posao, tick samo prati status.
+Loš primjer:
+tick/step blokira 30–60 sekundi i drži worker “zaleđen”
+Pravilo #8: Granice odgovornosti
+Primjer razdvajanja na manje agente.
+ 
+Scoring tick
+Sense: uzmi 1 queued message
+Think: izračunaj pSpam
+Act: upiši prediction + postavi status (Inbox/Spam/PendingReview)
+Retrain tick (obavezno)
+Sense: pročitaj settings + gold counter
+Think: ShouldRetrain?
+Act: treniraj + kreiraj ModelVersion + activate
+Learn: reset counter, log
+Šablon - ako je async
+public async Task<ScoringTickResult?> StepAsync(CancellationToken ct)
+{
+    // SENSE
+    var msg = await _queue.DequeueNextAsync(ct);
+    if (msg == null) return null;
+    // THINK
+    var pSpam = await _classifier.PredictAsync(msg.Text, ct);
+    var decision = _rules.Decide(pSpam, _settings);
+    // ACT
+    await _writer.SavePredictionAndUpdateStatusAsync(msg, pSpam, decision, ct);
+    // (LEARN optional)
+    // e.g., metrics counter, audit, etc.
+    return new ScoringTickResult { ... };
+}
+Dvije “najčešće greške”
+Stavljanje thresholds i retrain pravila u Web layer
+→ minus jer Web mora biti tanak host.
+Tick/step koji u sebi radi delay i realtime emit
+→ minus jer tick/step mora biti dijeljiva “jezgra” (shared).
+
+Godina 4 - Umjetna inteligencija 2025/2026
+-----
+1- source code
+2- dokumentacija
+3- pptx
+4- demo video (opcionalno)
+ 
