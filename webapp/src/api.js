@@ -37,3 +37,18 @@ export async function submitReview(payload) {
     body: JSON.stringify(payload)
   });
 }
+
+export async function deleteEmail(id) {
+  await fetch(`/api/emails/${id}`, {
+    method: "DELETE"
+  });
+}
+
+export async function analyzeWithLlm(payload) {
+  const response = await fetch("/api/llm/analyze", {
+    method: "POST",
+    headers: defaultHeaders,
+    body: JSON.stringify(payload)
+  });
+  return response.json();
+}

@@ -28,6 +28,9 @@
 .env
 .env.*
 
+# Local development settings
+src/EmailTriageAgent.Web/appsettings.Development.json
+
 # OS files
 Thumbs.db
 Desktop.ini

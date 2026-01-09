@@ -40,6 +40,13 @@ public sealed class EmailsController : ControllerBase
         return Ok(messages.Select(MapToDto).ToList());
     }
 
+    [HttpDelete("{id:guid}")]
+    public async Task<IActionResult> DeleteAsync([FromRoute] Guid id, CancellationToken ct)
+    {
+        var deleted = await _emailQueryService.DeleteAsync(id, ct);
+        return deleted ? NoContent() : NotFound();
+    }
+
     private static EmailDto MapToDto(EmailMessage message)
     {
         return new EmailDto

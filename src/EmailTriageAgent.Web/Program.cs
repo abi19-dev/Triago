@@ -1,4 +1,5 @@
 using EmailTriageAgent.Application;
+using EmailTriageAgent.Application.LLM;
 using EmailTriageAgent.Application.Runners;
 using EmailTriageAgent.Application.Services;
 using EmailTriageAgent.Infrastructure;
@@ -22,6 +23,8 @@ builder.Services.AddScoped<DecisionRules>();
 builder.Services.AddScoped<ScoringAgentRunner>();
 builder.Services.AddScoped<RetrainAgentRunner>();
 builder.Services.AddSingleton<IEmailClassifier, KeywordEmailClassifier>();
+builder.Services.AddHttpClient();
+builder.Services.AddScoped<ILlmAnalyzer, OpenAiLlmAnalyzer>();
 
 builder.Services.AddHostedService<ScoringWorker>();
 builder.Services.AddHostedService<RetrainWorker>();
