@@ -1,62 +1,63 @@
 # Triago (Email Triage Agent) ✉️🛡️
 
-Triago is an intelligent inbox assistant that scores incoming emails, routes them into the right state, and learns from human reviews. Messages that are uncertain are queued for review, and feedback is used to retrain the agent over time.
+Triago je inteligentni asistent za inbox koji ocjenjuje dolazne emailove, usmjerava ih u odgovarajuće stanje i uči iz ljudskih recenzija. Poruke koje nisu sigurne idu na pregled, a povratne informacije se koriste za retreniranje agenta kroz vrijeme.
 
-## What it does ✅
-- Scores each incoming email for spam risk
-- Routes messages to Allowed, Blocked, or Pending Review
-- Collects human labels to improve future decisions
-- Runs in short agent ticks (Sense → Think → Act → Learn)
-- Provides GPT-based explanations for why the agent made a decision
-- Supports deleting emails from the detail view
+## Šta radi ✅
+- Ocjenjuje rizik od spama za svaku poruku
+- Usmjerava poruke u Allow, Blocked ili Pending Review
+- Prikuplja ljudske oznake radi poboljšanja budućih odluka
+- Radi u kratkim agentnim tick-ovima (Sense → Think → Act → Learn)
+- Daje GPT objašnjenja zašto je agent donio odluku
+- Podržava brisanje poruka iz detaljnog prikaza
 
-## Project structure 🧭
-- `src/AiAgents.Core` – generic agent abstractions
-- `src/EmailTriageAgent` – domain + application + infrastructure logic
-- `src/EmailTriageAgent.Web` – API host + background workers
+## Struktura projekta 🧭
+- `src/AiAgents.Core` – generičke apstrakcije agenata
+- `src/EmailTriageAgent` – domain + application + infrastructure logika
+- `src/EmailTriageAgent.Web` – API host + background workeri
 - `webapp` – Triago UI
 
-## Prerequisites 🧰
+## Preduslovi 🧰
 - .NET 8 SDK
 - Node.js 18+
-- SQL Server (LocalDB is fine)
+- SQL Server (LocalDB je dovoljan)
 
-## Configure database 🗄️
-Update the connection string in:
+## Podešavanje baze 🗄️
+Podesi connection string u:
 - `src/EmailTriageAgent.Web/appsettings.json`
 
-Example LocalDB:
+Primjer za LocalDB:
 ```
 Server=(localdb)\MSSQLLocalDB;Database=EmailTriageAgent;Trusted_Connection=True;TrustServerCertificate=True
 ```
 
-## Run the API 🚀
-1. Apply migrations:
+## Pokretanje API-ja 🚀
+1. Kreiraj migracije:
 ```
 Add-Migration InitialCreate -Project EmailTriageAgent -StartupProject EmailTriageAgent.Web
 Update-Database -Project EmailTriageAgent -StartupProject EmailTriageAgent.Web
 ```
-2. Run the API:
+2. Pokreni API:
 ```
 dotnet run --project src/EmailTriageAgent.Web
 ```
 
-Swagger will be available at:
+Swagger će biti dostupan na:
 ```
 https://localhost:<port>/swagger
 ```
 
-## Run the UI 🎨
+## Pokretanje UI-a 🎨
 ```
 cd webapp
 npm install
 npm run dev
 ```
 
-## Basic usage 🧪
-- Open the UI and go to Compose to send a new email to the agent.
-- Check Inbox / Pending Review / Blocked / Completed tabs to see routing.
-- Mark Pending Review items as Spam or Not Spam to provide feedback.
-- When enough reviews are collected, the retrain agent runs automatically.
-- Open any email and click “Ask GPT Why?” to see an explanation.
-- Use “Delete email” in the detail view to remove an email.
+## Osnovna upotreba 🧪
+- Otvori UI i idi na Compose da pošalješ novu poruku agentu.
+- Pregledaj Inbox / Pending Review / Blocked / Completed tabove.
+- Označi Pending Review poruke kao Spam ili Not Spam.
+- Kada se skupi dovoljno review-a, retrain agent se pokreće automatski.
+- Otvori poruku i klikni “Ask GPT Why?” da vidiš objašnjenje.
+- Koristi “Delete email” u detaljnom prikazu da ukloniš poruku.
+
