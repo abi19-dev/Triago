@@ -1,3 +1,4 @@
+using AiAgents.Core;
 using EmailTriageAgent.Application.Results;
 using EmailTriageAgent.Application.Services;
 using EmailTriageAgent.Domain;
@@ -6,6 +7,7 @@ using EmailTriageAgent.ML;
 namespace EmailTriageAgent.Application.Runners;
 
 public sealed class ScoringAgentRunner
+    : SoftwareAgent<object, object, ScoringTickResult, object>
 {
     private readonly QueueService _queueService;
     private readonly ScoringService _scoringService;
@@ -27,7 +29,7 @@ public sealed class ScoringAgentRunner
         _classifier = classifier;
     }
 
-    public async Task<ScoringTickResult?> StepAsync(CancellationToken ct)
+    public override async Task<ScoringTickResult?> StepAsync(CancellationToken ct)
     {
         // SENSE
         var message = await _queueService.DequeueNextAsync(ct);

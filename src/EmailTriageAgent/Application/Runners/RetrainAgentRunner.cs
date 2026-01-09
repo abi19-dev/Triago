@@ -1,9 +1,11 @@
+using AiAgents.Core;
 using EmailTriageAgent.Application.Results;
 using EmailTriageAgent.Application.Services;
 
 namespace EmailTriageAgent.Application.Runners;
 
 public sealed class RetrainAgentRunner
+    : SoftwareAgent<object, object, RetrainTickResult, object>
 {
     private readonly SettingsService _settingsService;
     private readonly TrainingService _trainingService;
@@ -14,7 +16,7 @@ public sealed class RetrainAgentRunner
         _trainingService = trainingService;
     }
 
-    public async Task<RetrainTickResult?> StepAsync(CancellationToken ct)
+    public override async Task<RetrainTickResult?> StepAsync(CancellationToken ct)
     {
         // SENSE
         var settings = await _settingsService.GetAsync(ct);
